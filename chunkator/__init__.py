@@ -32,6 +32,10 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
 
     source_qs = source_qs.order_by(order_by_field)
     queryset = source_qs
+    
+    if chunk_size is None:
+        yield list(queryset)
+    
     while True:
         if pk:
             queryset = source_qs.filter(pk__gt=pk)
@@ -53,7 +57,7 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
 
         yield page
 
-        if nb_items < chunk_size or chunk_size is None:
+        if nb_items < chunk_size:
             return
 
 
