@@ -53,7 +53,7 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
 
         yield page
 
-        if nb_items < chunk_size:
+        if nb_items < chunk_size or chunk_size is None:
             return
 
 
