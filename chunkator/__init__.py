@@ -35,6 +35,7 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
     
     if chunk_size is None:
         yield list(queryset)
+        return
     
     while True:
         if pk:
